@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:contentDescription="moon shaped moon"
+            app:srcCompat="@drawable/ic_moon" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/moonriseTimeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moonrise: "
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorFont"
+                    app:fontFamily="casual" />
+
+                <TextView
+                    android:id="@+id/moonriseTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorFont"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:fontFamily="casual" />
+
+                <TextView
+                    android:id="@+id/nextFullMoonLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next Full Moon: "
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorFont"
+                    android:textSize="14sp"
+                    app:fontFamily="casual" />
+
+                <TextView
+                    android:id="@+id/nextFullMoon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorFont"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:fontFamily="casual" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/moonsetTimeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moonset: "
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorFont"
+                    app:fontFamily="casual" />
+
+                <TextView
+                    android:id="@+id/moonsetTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorFont"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:fontFamily="casual" />
+
+                <TextView
+                    android:id="@+id/nextNewMoonLabel"
+                    android:layout_width="119dp"
+                    android:layout_height="wrap_content"
+                    android:text="Next New Moon: "
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorFont"
+                    android:textSize="14sp"
+                    app:fontFamily="casual" />
+
+                <TextView
+                    android:id="@+id/nextNewMoon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorFont"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:fontFamily="casual" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/moonSynodicDayLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Synodic Day: "
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorFont"
+                    android:textSize="14sp"
+                    app:fontFamily="casual" />
+
+                <TextView
+                    android:id="@+id/moonSynodicDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorFont"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:fontFamily="casual" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/moonIlluminationLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Illumination: "
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorFont"
+                    android:textSize="14sp"
+                    app:fontFamily="casual" />
+
+                <TextView
+                    android:id="@+id/moonIllumination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorFont"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:fontFamily="casual" />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

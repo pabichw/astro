@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swiperefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="8sp"
+        android:paddingRight="8sp"
+        android:paddingTop="5sp"
+        android:theme="@android:style/Theme.Holo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/inputCity"
+                android:layout_width="403dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/Search"
+                android:inputType="textPersonName" />
+
+            <ImageButton
+                android:id="@+id/buttonSearch"
+                android:layout_width="73dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_search"
+                android:text="Search" />
+
+            <ImageButton
+                android:id="@+id/buttonFavorite"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_heart_empty" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <fragment
+                android:id="@+id/weatherBasicFragment"
+                android:name="com.example.wiktor.astroapp.weather.WeatherBasicFragment"
+                android:layout_width="451dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switchTempUnit"
+                    android:layout_width="223dp"
+                    android:layout_height="10sp"
+                    android:layout_weight="1"
+                    android:text="Units"
+                    android:textOff="C"
+                    android:textOn="F" />
+
+                <fragment
+                    android:id="@+id/weatherForecastFragment"
+                    android:name="com.example.wiktor.astroapp.weather.WeatherForecastFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <fragment
+                    android:id="@+id/weatherAdvancedFragment"
+                    android:name="com.example.wiktor.astroapp.weather.WeatherAdvancedFragment"
+                    android:layout_width="316dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

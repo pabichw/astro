@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.wiktor.astroapp.astro.AstroActivity">
+
+    <LinearLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundDarkness"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:theme="@android:style/Theme.Holo">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/longiInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal|numberSigned"
+                android:ems="10"
+                android:hint="Longitude..."
+                android:textColor="@color/colorFont" />
+
+            <EditText
+                android:id="@+id/latiInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal|numberSigned"
+                android:ems="10"
+                android:hint="Latitude..."
+                android:textColor="@color/colorFont" />
+
+            <EditText
+                android:id="@+id/freqInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:hint="Refresh freq"
+                android:textColor="@color/colorFont" />
+
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/timeFragment"
+            android:name="com.example.wiktor.astroapp.astro.TimeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="45sp" />
+
+        <TextView
+            android:id="@+id/longAndLatiText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Insert your longitude and latitude"
+            android:textAlignment="center"
+            android:textColor="@color/colorFont"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/buttonChange"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:text="Sun/Moon" />
+
+        <fragment
+            android:id="@+id/sunFragment"
+            android:name="com.example.wiktor.astroapp.astro.SunFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <fragment
+            android:id="@+id/moonFragment"
+            android:name="com.example.wiktor.astroapp.astro.MoonFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="vertical"
+        android:theme="@android:style/Theme.Holo">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center_horizontal"
+            android:text="AstroWeather"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="30sp"
+            app:fontFamily="casual" />
+
+        <Button
+            android:id="@+id/buttonAstro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Astro" />
+
+        <Button
+            android:id="@+id/buttonWeather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Weather" />
+
+        <Button
+            android:id="@+id/buttonExit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exit" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
