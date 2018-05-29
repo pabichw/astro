@@ -85,13 +85,16 @@ public class WeatherForecastFragment extends Fragment {
                     case "Cloudy":
                         weatherIcon.setImageResource(R.drawable.ic_weather_cloudy);
                         break;
+                    case "Mostly Cloudy":
+                        weatherIcon.setImageResource(R.drawable.ic_weather_cloudy);
+                        break;
                     case "Partly Cloudy":
                         weatherIcon.setImageResource(R.drawable.ic_weather_cloudy);
                         break;
-                    case "Scattered Thunderstorm":
+                    case "Scattered Thunderstorms":
                         weatherIcon.setImageResource(R.drawable.ic_weather_storm);
                         break;
-                    case "Thunderstorm":
+                    case "Thunderstorms":
                         weatherIcon.setImageResource(R.drawable.ic_weather_storm);
                         break;
                     case "Rain":
