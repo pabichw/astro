@@ -116,13 +116,13 @@ public class WeatherActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!cityInput.getText().toString().isEmpty()) {
                     if (cityFavorited == false) {
-                        databaseManager.addCity(cityInputVal);
+                        databaseManager.addCity(cityInput.getText().toString());
                         favoriteButton.setImageResource(R.drawable.ic_heart_filled);
                         cityFavorited = true;
                     } else {
                         favoriteButton.setImageResource(R.drawable.ic_heart_empty);
-                        if(databaseManager.cityExists(cityInputVal))
-                            databaseManager.deleteCity(cityInputVal);
+                        if(databaseManager.cityExists(cityInput.getText().toString()))
+                            databaseManager.deleteCity(cityInput.getText().toString());
                         cityFavorited = false;
                     }
                 }else{
