@@ -65,6 +65,8 @@ public class DatabaseManager {
         DB_Weather.setWindSpeed(weatherData.getWindSpeed());
         DB_Weather.setWindDirection(weatherData.getWindDirection());
         DB_Weather.setHumidity(weatherData.getHumidity());
+        DB_Weather.setLongitude(weatherData.getCoordLong());
+        DB_Weather.setLatitude(weatherData.getCoordLat());
 
         RealmList<DB_DailyForecast> listDF = new RealmList<DB_DailyForecast>();
 
@@ -104,6 +106,9 @@ public class DatabaseManager {
         weatherData.setWindDirection(db_weatherObject.getWindDirection());
         weatherData.setWindSpeed(db_weatherObject.getWindSpeed());
         weatherData.setHumidity(db_weatherObject.getHumidity());
+        weatherData.setCoordLat(db_weatherObject.getLatitude());
+        weatherData.setCoordLong(db_weatherObject.getLongitude());
+
         List<DailyForecast> listDF = new ArrayList<DailyForecast>();
         for(DB_DailyForecast DB_df : db_weatherObject.getForecast()){
             DailyForecast df = new DailyForecast(DB_df.getTempHigh(),

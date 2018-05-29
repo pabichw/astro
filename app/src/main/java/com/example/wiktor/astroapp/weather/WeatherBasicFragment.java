@@ -11,10 +11,12 @@ import android.widget.TextView;
 import com.example.wiktor.astroapp.R;
 import com.example.wiktor.astroapp.weather.utilities.MessagesDisplayer;
 
+import org.w3c.dom.Text;
+
 public class WeatherBasicFragment extends Fragment {
     private View view;
     private TextView  tempUnitLabel, cityNameLabel, timeLabel, pressureLabel,
-                    descLabel;
+                    descLabel, coordsLabel;
     private ImageView weatherIcon;
     private WeatherData weatherData;
     private boolean isDisplayingFahrenheit = true;
@@ -38,6 +40,7 @@ public class WeatherBasicFragment extends Fragment {
         timeLabel = (TextView) view.findViewById(R.id.timeLabel);
         pressureLabel = (TextView) view.findViewById(R.id.pressureLabel);
         descLabel = (TextView) view.findViewById(R.id.descLabel);
+        coordsLabel = (TextView) view.findViewById(R.id.coordsLabel);
     }
     public void changeUnit(String changeToUnit){
         if(weatherData != null) {
@@ -62,6 +65,7 @@ public class WeatherBasicFragment extends Fragment {
             timeLabel.setText(weatherData.getTime());
             pressureLabel.setText(weatherData.getPressure() + " hPa");
             descLabel.setText(weatherData.getDesc());
+            coordsLabel.setText(weatherData.getCoordLat() + " " + weatherData.getCoordLong());
         }catch(Exception e){
             e.printStackTrace();
         }

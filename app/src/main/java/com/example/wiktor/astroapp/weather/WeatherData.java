@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherData implements Parcelable{
-    private String fahrenheitDegrees, celcioDegrees, tempUnit, time, cityName, pressure, desc, latitude, longitude, humidity, visibility, windSpeed, windDirection;
+    private String fahrenheitDegrees, celcioDegrees, tempUnit, time, cityName, pressure, desc, coordLat, coordLong,
+            latitude, longitude, humidity, visibility, windSpeed, windDirection;
     private List<DailyForecast> forecast;
-
 
     public WeatherData(){}
     public void setFahrenheitDegrees(String val){
@@ -173,5 +173,21 @@ public class WeatherData implements Parcelable{
         windSpeed = in.readString();
         windDirection = in.readString();
         in.readList(forecast, null);
+    }
+
+    public String getCoordLat() {
+        return coordLat;
+    }
+
+    public void setCoordLat(String coordLat) {
+        this.coordLat = coordLat;
+    }
+
+    public String getCoordLong() {
+        return coordLong;
+    }
+
+    public void setCoordLong(String coordLong) {
+        this.coordLong = coordLong;
     }
 }

@@ -89,10 +89,21 @@ public class FetchWeather extends AsyncTask<String, Void, WeatherData>{
                     .getJSONObject("channel")
                     .getJSONObject("atmosphere")
                     .getString("pressure"));
+            weatherData.setCoordLat(jObject.getJSONObject("query")
+                    .getJSONObject("results")
+                    .getJSONObject("channel")
+                    .getJSONObject("item")
+                    .getString("lat"));
+            weatherData.setCoordLong(jObject.getJSONObject("query")
+                    .getJSONObject("results")
+                    .getJSONObject("channel")
+                    .getJSONObject("item")
+                    .getString("long"));
             JSONObject forecastObj = jObject.getJSONObject("query")
                     .getJSONObject("results")
                     .getJSONObject("channel")
                     .getJSONObject("item");
+
             JSONArray forecastArray = forecastObj.getJSONArray("forecast");
             List<DailyForecast> forecastList = new ArrayList<DailyForecast>();
 
