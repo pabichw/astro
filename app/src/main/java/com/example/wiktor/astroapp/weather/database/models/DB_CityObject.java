@@ -17,4 +17,5 @@ public class DB_CityObject extends RealmObject {
     public void setName(String name) {
         this.name = name;
     }
+
 }

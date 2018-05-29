@@ -167,7 +167,6 @@ public class WeatherActivity extends AppCompatActivity {
                 if(checkForInternetConnection()) {
                     if(!citySearched.equals("")) {
                         new FetchWeather(self).execute(citySearched);
-
                         MessagesDisplayer.displayWithContext(self, "Refreshed");
                     }
                 }else
@@ -189,8 +188,10 @@ public class WeatherActivity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
     private void checkForWeather() {
+        cityInputVal = cityInput.getText().toString().replace(" ","%20");
+
         if(checkForInternetConnection())
-            new FetchWeather(this).execute(cityInput.getText().toString());
+            new FetchWeather(this).execute(cityInputVal);
         else {
             MessagesDisplayer.displayWithContext(this, "No internet connection. Loading outdated data!");
             WeatherData loadedWeatherData = databaseManager.getLatestSavedWeatherForCity(cityInput.getText().toString());
