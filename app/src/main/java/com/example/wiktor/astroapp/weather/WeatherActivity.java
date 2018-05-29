@@ -116,13 +116,13 @@ public class WeatherActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!cityInput.getText().toString().isEmpty()) {
                     if (cityFavorited == false) {
-                        databaseManager.addCity(cityInput.getText().toString());
+                        databaseManager.addCity(cityInputVal);
                         favoriteButton.setImageResource(R.drawable.ic_heart_filled);
                         cityFavorited = true;
                     } else {
                         favoriteButton.setImageResource(R.drawable.ic_heart_empty);
-                        if(databaseManager.cityExists(cityInput.getText().toString()))
-                            databaseManager.deleteCity(cityInput.getText().toString());
+                        if(databaseManager.cityExists(cityInputVal))
+                            databaseManager.deleteCity(cityInputVal);
                         cityFavorited = false;
                     }
                 }else{
@@ -172,7 +172,7 @@ public class WeatherActivity extends AppCompatActivity {
                     }
                 }else
                     MessagesDisplayer.displayWithContext(self, "No internet connection!");
-                mSwipeRefreshLayout.setRefreshing(false);
+                 mSwipeRefreshLayout.setRefreshing(false);
             }
 
         });
@@ -190,7 +190,7 @@ public class WeatherActivity extends AppCompatActivity {
     }
     private void checkForWeather() {
         if(checkForInternetConnection())
-            new FetchWeather(this).execute(cityInputVal);
+            new FetchWeather(this).execute(cityInput.getText().toString());
         else {
             MessagesDisplayer.displayWithContext(this, "No internet connection. Loading outdated data!");
             WeatherData loadedWeatherData = databaseManager.getLatestSavedWeatherForCity(cityInput.getText().toString());
