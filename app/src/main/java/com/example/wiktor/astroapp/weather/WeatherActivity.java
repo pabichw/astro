@@ -155,7 +155,10 @@ public class WeatherActivity extends AppCompatActivity {
         unitsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                changeDisplayedUnit();
+                if(isDisplayingFahrenheit)
+                    changeDisplayedUnit("celcio");
+                else
+                    changeDisplayedUnit("fahrenheit");
             }
         });
 
@@ -176,10 +179,10 @@ public class WeatherActivity extends AppCompatActivity {
 
         });
     }
-    private void changeDisplayedUnit() {
+    private void changeDisplayedUnit(String changeToUnit) {
         isDisplayingFahrenheit = !isDisplayingFahrenheit;
-        weatherBasicFragment.changeUnit();
-        weatherForecastFragment.changeUnit();
+        weatherBasicFragment.changeUnit(changeToUnit);
+        weatherForecastFragment.changeUnit(changeToUnit);
     }
 
     private boolean checkForInternetConnection(){

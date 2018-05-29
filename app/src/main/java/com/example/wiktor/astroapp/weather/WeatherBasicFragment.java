@@ -39,11 +39,14 @@ public class WeatherBasicFragment extends Fragment {
         pressureLabel = (TextView) view.findViewById(R.id.pressureLabel);
         descLabel = (TextView) view.findViewById(R.id.descLabel);
     }
-    public void changeUnit(){
+    public void changeUnit(String changeToUnit){
         if(weatherData != null) {
+            if(changeToUnit.equals("celcio"))
+                isDisplayingFahrenheit = false;
+            else
+                isDisplayingFahrenheit = true;
             setInfo(weatherData);
         }
-
     }
     public void setInfo(WeatherData weatherData){
         this.weatherData = weatherData;
@@ -54,7 +57,7 @@ public class WeatherBasicFragment extends Fragment {
                 tempUnitLabel.setText(weatherData.getFahrenheitDegrees()+ " °F");
             else
                 tempUnitLabel.setText(weatherData.getCelcioDegrees()+ " °C");
-            isDisplayingFahrenheit = !isDisplayingFahrenheit;
+
             setWeatherIcon(weatherData);
             timeLabel.setText(weatherData.getTime());
             pressureLabel.setText(weatherData.getPressure() + " hPa");
@@ -75,6 +78,9 @@ public class WeatherBasicFragment extends Fragment {
             case "Cloudy":
                 weatherIcon.setImageResource(R.drawable.ic_weather_cloudy);
                 break;
+            case "Clear":
+                weatherIcon.setImageResource(R.drawable.ic_weather_clear);
+                break;
             case "Mostly Cloudy":
                 weatherIcon.setImageResource(R.drawable.ic_weather_cloudy);
                 break;
@@ -88,6 +94,9 @@ public class WeatherBasicFragment extends Fragment {
                 weatherIcon.setImageResource(R.drawable.ic_weather_storm);
                 break;
             case "Rain":
+                weatherIcon.setImageResource(R.drawable.ic_weather_rainy);
+                break;
+            case "Scattered Rain":
                 weatherIcon.setImageResource(R.drawable.ic_weather_rainy);
                 break;
             default:

@@ -20,7 +20,7 @@ public class WeatherForecastFragment extends Fragment {
     private View view;
     private LinearLayout forecastContainer;
     private WeatherData weatherData;
-    private boolean isDisplayedFahrenheit = true;
+    private boolean isDisplayingFahrenheit = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,8 +38,12 @@ public class WeatherForecastFragment extends Fragment {
     private void addListeners() {
         forecastContainer = (LinearLayout) view.findViewById(R.id.forecastContainer);
     }
-    public void changeUnit(){
+    public void changeUnit(String changeToUnit){
         if(weatherData != null) {
+            if(changeToUnit.equals("celcio"))
+                isDisplayingFahrenheit = false;
+            else
+                isDisplayingFahrenheit = true;
             setInfo(weatherData);
         }
     }
@@ -66,7 +70,7 @@ public class WeatherForecastFragment extends Fragment {
                 weekDay.setGravity(Gravity.CENTER);
                 day.addView(weekDay);
 
-                if(isDisplayedFahrenheit)
+                if(isDisplayingFahrenheit)
                     temp.setText(Double.toString(df.getTempHigh()).substring(0,2) + " / " + Double.toString(df.getTempLow()).substring(0,2) + " °F");
                 else
                     temp.setText(Double.toString(df.getTempHighC()).substring(0,2) + " / " + Double.toString(df.getTempLowC()).substring(0,2) + " °C");
@@ -116,7 +120,6 @@ public class WeatherForecastFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-        isDisplayedFahrenheit = !isDisplayedFahrenheit;
     }
 
     @Override
