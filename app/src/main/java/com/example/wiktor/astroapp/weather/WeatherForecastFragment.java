@@ -104,9 +104,12 @@ public class WeatherForecastFragment extends Fragment {
                     case "Rain":
                         weatherIcon.setImageResource(R.drawable.ic_weather_rainy);
                         break;
+                    case "Scattered Showers":
+                        weatherIcon.setImageResource(R.drawable.ic_weather_rainy);
+                        break;
                     default:
                         MessagesDisplayer.displayWithContext(view.getContext(), "Not found " + df.getDesc());
-                };
+                }
 
                 day.addView(weatherIcon);
 

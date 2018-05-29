@@ -96,7 +96,7 @@ public class WeatherBasicFragment extends Fragment {
             case "Rain":
                 weatherIcon.setImageResource(R.drawable.ic_weather_rainy);
                 break;
-            case "Scattered Rain":
+            case "Scattered Showers":
                 weatherIcon.setImageResource(R.drawable.ic_weather_rainy);
                 break;
             default:
