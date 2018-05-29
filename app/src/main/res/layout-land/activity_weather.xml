@@ -73,8 +73,8 @@
                     android:layout_height="10sp"
                     android:layout_weight="1"
                     android:text="Units"
-                    android:textOff="C"
-                    android:textOn="F" />
+                    android:textOff="F"
+                    android:textOn="C" />
 
                 <fragment
                     android:id="@+id/weatherForecastFragment"
