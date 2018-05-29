@@ -171,12 +171,13 @@ public class WeatherActivity extends AppCompatActivity {
                     if(!citySearched.equals("")) {
                         new FetchWeather(self).execute(citySearched);
                         MessagesDisplayer.displayWithContext(self, "Refreshed");
+                    }else{
+                        MessagesDisplayer.displayWithContext(self, "No weather to display");
                     }
                 }else
                     MessagesDisplayer.displayWithContext(self, "No internet connection!");
-                 mSwipeRefreshLayout.setRefreshing(false);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
-
         });
     }
     private void changeDisplayedUnit(String changeToUnit) {
@@ -204,7 +205,7 @@ public class WeatherActivity extends AppCompatActivity {
                 MessagesDisplayer.displayWithContext(context,"No such location ever saved!!");
             }
         }
-        citySearched = cityInput.getText().toString();
+        citySearched = cityInputVal;
     }
     public void useWeatherData(WeatherData weatherData){
         weatherBasicFragment.setInfo(weatherData);
