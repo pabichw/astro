@@ -34,9 +34,8 @@ import io.realm.Realm;
 public class WeatherActivity extends AppCompatActivity {
     /****** TO DO *******
      *
-     * - zapisywanie do bazy - naprawić
      * - zmiana jednostek - naprawić
-     *
+     * - wpisywanie miasta ze spacją
      *
      *
      *
@@ -46,6 +45,7 @@ public class WeatherActivity extends AppCompatActivity {
     private WeatherForecastFragment weatherForecastFragment;
 
     private EditText cityInput;
+    private String cityInputVal;
     private String citySearched = "";
     private Switch unitsSwitch;
     private ImageButton favoriteButton, searchButton;
@@ -105,6 +105,7 @@ public class WeatherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             if(!cityInput.getText().toString().isEmpty()){
+                cityInputVal = cityInput.getText().toString().replace(" ","%20");
                 checkForWeather();
             }
         };
@@ -189,7 +190,7 @@ public class WeatherActivity extends AppCompatActivity {
     }
     private void checkForWeather() {
         if(checkForInternetConnection())
-            new FetchWeather(this).execute(cityInput.getText().toString());
+            new FetchWeather(this).execute(cityInputVal);
         else {
             MessagesDisplayer.displayWithContext(this, "No internet connection. Loading outdated data!");
             WeatherData loadedWeatherData = databaseManager.getLatestSavedWeatherForCity(cityInput.getText().toString());
