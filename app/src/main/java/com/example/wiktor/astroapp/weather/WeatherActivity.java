@@ -1,7 +1,9 @@
 package com.example.wiktor.astroapp.weather;
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -54,6 +56,7 @@ public class WeatherActivity extends AppCompatActivity {
     private Context context;
     private boolean isDisplayingFahrenheit = true;
     private FragmentTransaction ft;
+    private boolean doDisplay = true;
 
     SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -104,11 +107,11 @@ public class WeatherActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            if(!cityInput.getText().toString().isEmpty()){
-                cityInputVal = cityInput.getText().toString().replace(" ","%20");
-                checkForWeather();
-            }
-        };
+                if(!cityInput.getText().toString().isEmpty()){
+                    cityInputVal = cityInput.getText().toString().replace(" ","%20");
+                    checkForWeather();
+                }
+            };
         });
         favoriteButton = (ImageButton)findViewById(R.id.buttonFavorite);
         favoriteButton.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +172,7 @@ public class WeatherActivity extends AppCompatActivity {
             public void onRefresh() {
                 if(checkForInternetConnection()) {
                     if(!citySearched.equals("")) {
-                        new FetchWeather(self).execute(citySearched);
+                        new FetchWeather(self, context).execute(citySearched);
                         MessagesDisplayer.displayWithContext(self, "Refreshed");
                     }else{
                         MessagesDisplayer.displayWithContext(self, "No weather to display");
@@ -195,7 +198,8 @@ public class WeatherActivity extends AppCompatActivity {
         cityInputVal = cityInput.getText().toString().replace(" ","%20");
 
         if(checkForInternetConnection())
-            new FetchWeather(this).execute(cityInputVal);
+            new FetchWeather(this, context).execute(cityInputVal);
+
         else {
             MessagesDisplayer.displayWithContext(this, "No internet connection. Loading outdated data!");
             WeatherData loadedWeatherData = databaseManager.getLatestSavedWeatherForCity(cityInput.getText().toString());
@@ -208,14 +212,32 @@ public class WeatherActivity extends AppCompatActivity {
         citySearched = cityInputVal;
     }
     public void useWeatherData(WeatherData weatherData){
-        weatherBasicFragment.setInfo(weatherData);
-        weatherForecastFragment.setInfo(weatherData);
-        weatherAdvancedFragment.setInfo(weatherData);
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                .show(weatherAdvancedFragment)
-                .commit();
+        if(weatherData != null) {
+            if(!weatherData.getCityName().equals(cityInput.getText().toString())){
+                MessagesDisplayer.displayWithContext(context, "Not found " + cityInput.getText() +". Insted disaplays " + weatherData.getCityName());
+                weatherBasicFragment.setInfo(weatherData);
+                weatherForecastFragment.setInfo(weatherData);
+                weatherAdvancedFragment.setInfo(weatherData);
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction()
+                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                        .show(weatherAdvancedFragment)
+                        .commit();
+
+            }else{
+                weatherBasicFragment.setInfo(weatherData);
+                weatherForecastFragment.setInfo(weatherData);
+                weatherAdvancedFragment.setInfo(weatherData);
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction()
+                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                        .show(weatherAdvancedFragment)
+                        .commit();
+            }
+
+        }else{
+            MessagesDisplayer.displayWithContext(context, "No such location! Please search for existing one");
+        }
     }
     public DatabaseManager getDatabaseManager(){
         return this.databaseManager;

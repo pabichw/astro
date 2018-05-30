@@ -1,5 +1,8 @@
 package com.example.wiktor.astroapp.weather.utilities;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 
 import com.example.wiktor.astroapp.weather.DailyForecast;
@@ -22,15 +25,22 @@ import java.util.List;
 
 public class FetchWeather extends AsyncTask<String, Void, WeatherData>{
     private WeatherActivity main;
+    private String cityName;
+    private Context context;
+
     public FetchWeather(WeatherActivity main){
         this.main = main;
+    }
+    public FetchWeather(WeatherActivity main, Context context){
+        this.main = main;
+        this.context = context;
     }
     protected WeatherData doInBackground(String... cityName){
         HttpURLConnection urlConnection = null;
         StringBuilder result = new StringBuilder();
-
+        this.cityName = cityName[0];
         try {
-            String rootURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22"+ cityName[0] +"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+            String rootURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22"+ this.cityName +"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
             URL url = new URL(rootURL);
 
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -53,7 +63,7 @@ public class FetchWeather extends AsyncTask<String, Void, WeatherData>{
     }
 
     private WeatherData parseJSON(StringBuilder result) {
-        WeatherData weatherData = new WeatherData();
+        final WeatherData weatherData = new WeatherData();
         try {
             JSONObject jObject = new JSONObject(result.toString());
             weatherData.setFahrenheitDegrees(jObject.getJSONObject("query")
@@ -141,20 +151,23 @@ public class FetchWeather extends AsyncTask<String, Void, WeatherData>{
                     .getJSONObject("wind")
                     .getString("direction"));
 
-
+            //if nazwa miasta odebranego to nie jest rowna wpisanej to wyswietl komunikat
         } catch (JSONException e) {
             e.printStackTrace();
-
-            weatherData.setFahrenheitDegrees("#wrong_");
+            //MessagesDisplayer.displayWithContext(this.context,"No such city found !!!");
+            return null;
         }
+
         return weatherData;
     }
 
     @Override
     protected void onPostExecute(WeatherData weatherData) {
         try {
-            main.useWeatherData(weatherData);
-            main.getDatabaseManager().addWeatherDataForOffline(weatherData);
+            if(weatherData != null) {
+                main.useWeatherData(weatherData);
+                main.getDatabaseManager().addWeatherDataForOffline(weatherData);
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
