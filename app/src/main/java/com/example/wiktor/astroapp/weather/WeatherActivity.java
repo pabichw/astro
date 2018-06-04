@@ -36,10 +36,8 @@ import io.realm.Realm;
 public class WeatherActivity extends AppCompatActivity {
     /****** TO DO *******
      *
-     * - zmiana jednostek - naprawić
-     * - wpisywanie miasta ze spacją
-     *
-     *
+     * - komunikat o nie wyszukaniu jakiegokolwiek miasta
+     * - layout wertykalny na tablety
      *
      */
     private WeatherBasicFragment weatherBasicFragment;
@@ -213,8 +211,8 @@ public class WeatherActivity extends AppCompatActivity {
     }
     public void useWeatherData(WeatherData weatherData){
         if(weatherData != null) {
-            if(!weatherData.getCityName().equals(cityInput.getText().toString())){
-                MessagesDisplayer.displayWithContext(context, "Not found " + cityInput.getText() +". Insted disaplays " + weatherData.getCityName());
+            if(!weatherData.getCityName().equals(cityInput.getText().toString())) {
+                MessagesDisplayer.displayWithContext(context, "Not found " + cityInput.getText() + ". Insted disaplays " + weatherData.getCityName());
                 weatherBasicFragment.setInfo(weatherData);
                 weatherForecastFragment.setInfo(weatherData);
                 weatherAdvancedFragment.setInfo(weatherData);

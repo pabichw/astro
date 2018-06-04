@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.widget.Toast;
 
 import com.example.wiktor.astroapp.weather.DailyForecast;
 import com.example.wiktor.astroapp.weather.WeatherActivity;
@@ -66,6 +68,10 @@ public class FetchWeather extends AsyncTask<String, Void, WeatherData>{
         final WeatherData weatherData = new WeatherData();
         try {
             JSONObject jObject = new JSONObject(result.toString());
+
+            if(jObject.getJSONObject("query").getJSONObject("results").equals(null))
+                return null;
+
             weatherData.setFahrenheitDegrees(jObject.getJSONObject("query")
                     .getJSONObject("results")
                     .getJSONObject("channel")
@@ -155,6 +161,12 @@ public class FetchWeather extends AsyncTask<String, Void, WeatherData>{
         } catch (JSONException e) {
             e.printStackTrace();
             //MessagesDisplayer.displayWithContext(this.context,"No such city found !!!");
+            Handler handler =  new Handler(context.getMainLooper());
+            handler.post( new Runnable(){
+                public void run(){
+                    Toast.makeText(context, "No such or similar location found !!! :(",Toast.LENGTH_LONG).show();
+                }
+            });
             return null;
         }
 
@@ -167,6 +179,8 @@ public class FetchWeather extends AsyncTask<String, Void, WeatherData>{
             if(weatherData != null) {
                 main.useWeatherData(weatherData);
                 main.getDatabaseManager().addWeatherDataForOffline(weatherData);
+            }else{
+
             }
         }catch(Exception e){
             e.printStackTrace();

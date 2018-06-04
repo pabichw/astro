@@ -27,7 +27,8 @@ public class WeatherBasicFragment extends Fragment {
 
         if(savedInstanceState != null){
             weatherData = savedInstanceState.getParcelable("WEATHER_DATA");
-            setInfo(weatherData);
+            if(weatherData != null) // ????
+                setInfo(weatherData);
         }
 
         return view;
@@ -48,13 +49,13 @@ public class WeatherBasicFragment extends Fragment {
                 isDisplayingFahrenheit = false;
             else
                 isDisplayingFahrenheit = true;
+
             setInfo(weatherData);
         }
     }
     public void setInfo(WeatherData weatherData){
         this.weatherData = weatherData;
         try {
-
             cityNameLabel.setText(weatherData.getCityName());
             if(isDisplayingFahrenheit)
                 tempUnitLabel.setText(weatherData.getFahrenheitDegrees()+ " °F");

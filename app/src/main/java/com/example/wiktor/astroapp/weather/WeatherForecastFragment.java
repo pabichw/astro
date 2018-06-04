@@ -30,7 +30,8 @@ public class WeatherForecastFragment extends Fragment {
         addListeners();
         if(savedInstanceState != null){
             weatherData = savedInstanceState.getParcelable("WEATHER_DATA");
-            setInfo(weatherData);
+            if(weatherData != null)
+                setInfo(weatherData);
         }
         return view;
     }

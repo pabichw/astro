@@ -22,7 +22,8 @@ public class WeatherAdvancedFragment extends Fragment {
 
         if(savedInstanceState != null){
             weatherData = savedInstanceState.getParcelable("WEATHER_DATA");
-            setInfo(weatherData);
+            if(weatherData != null)
+                setInfo(weatherData);
         }
         return view;
     }
